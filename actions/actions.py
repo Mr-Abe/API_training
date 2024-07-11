@@ -18,7 +18,7 @@ class ActionFetchMarvelCharacter(Action):
     def run(self, dispatcher, tracker, domain):
         character_name = tracker.get_slot('character')
         # TODO: Delete Print
-        print(character_name)
+        print("Extracted character name:", character_name)
         if not character_name:
             dispatcher.utter_message(text="Please specify a character name.")
             return []

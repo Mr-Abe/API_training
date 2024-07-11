@@ -109,6 +109,8 @@ nlu:
 
 - intent: ask_character
   examples: |
-    - Tell me about [Spider-Man](character)
+    - Tell me about [Wolverine](character)
     - Who is [Iron Man](character)?
-    - Info on [Thor](character)
+    - I want details on [Thor](character)
+    - Information about [Black Widow](character) please
+    - Can you give me info on [Captain America](character)?
