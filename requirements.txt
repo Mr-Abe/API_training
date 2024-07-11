@@ -1,0 +1,22 @@
+rasa>=3.2.5  # Adjust according to the latest compatible version for Python 3.8
+sqlalchemy<2.0  # Pin SQLAlchemy to avoid compatibility issues with future versions
+pandas
+numpy>=1.21
+scikit-learn
+typing-extensions>=4.2.0
+aio_pika<=8.2.4
+
+# Sanic and dependencies to handle asynchronous server tasks
+sanic
+sanic-cors
+
+# Additional useful packages
+requests  # For making API requests, e.g., to the Marvel API
+flask  # If you are using Flask for any web interface
+
+# If you're using custom Python scripts that need specific libraries
+beautifulsoup4  # For web scraping tasks, if necessary
+lxml  # XML and HTML processing library
+
+# Security and deployment
+gunicorn  # WSGI HTTP Server for UNIX to serve your app

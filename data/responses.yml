@@ -1,0 +1,22 @@
+version: "3.1"
+
+slots:
+  character:
+    type: text
+    influence_conversation: true
+
+entities:
+  - character
+
+intents:
+  - ask_character
+
+responses:
+  utter_ask_which_character:
+  - text: "Which character would you like to know about?"
+  
+  utter_ask_hours:
+  - text: "Our business hours are from 9 AM to 5 PM, Monday to Friday."
+
+  utter_service_issues:
+  - text: "I'm sorry to hear that! Could you please describe the problem in more detail?"

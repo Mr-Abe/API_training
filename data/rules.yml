@@ -1,0 +1,29 @@
+version: "3.1"
+
+rules:
+- rule: Say goodbye anytime the user says goodbye
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+
+- rule: Say 'I am a bot' anytime the user challenges
+  steps:
+  - intent: bot_challenge
+  - action: utter_iamabot
+
+- rule: Respond to business hours query
+  steps:
+  - intent: ask_hours
+  - action: utter_ask_hours
+
+- rule: Respond to service issues
+  steps:
+  - intent: service_issues
+  - action: utter_service_issues
+
+- rule: Respond to character inquiries
+  steps:
+  - intent: ask_character
+  - action: action_fetch_marvel_character
+  - action: utter_did_that_help
+  - action: action_listen
