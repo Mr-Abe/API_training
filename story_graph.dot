@@ -1,0 +1,34 @@
+digraph  {
+0 [class="start active", fillcolor=green, fontsize=12, label=START, style=filled];
+"-1" [class=end, fillcolor=red, fontsize=12, label=END, style=filled];
+1 [class=active, fontsize=12, label=utter_greet];
+2 [class="", fontsize=12, label=utter_happy];
+4 [class="", fontsize=12, label=utter_cheer_up];
+5 [class="", fontsize=12, label=utter_did_that_help];
+"-4" [class=ellipsis, label="..."];
+9 [class="", fontsize=12, label=action_fetch_marvel_character];
+"-5" [class=ellipsis, label="..."];
+11 [class=active, fontsize=12, label=action_fetch_marvel_character];
+12 [class="intent dashed active", label="  ?  ", shape=rect];
+13 [class="intent active", fillcolor=lightblue, label="/greet", shape=rect, style=filled];
+14 [class=intent, fillcolor=lightblue, label="/ask_character", shape=rect, style=filled];
+15 [class=intent, fillcolor=lightblue, label="/mood_great", shape=rect, style=filled];
+16 [class=intent, fillcolor=lightblue, label="/mood_unhappy", shape=rect, style=filled];
+17 [class="intent active", fillcolor=lightblue, label="/ask_character", shape=rect, style=filled];
+0 -> "-1"  [class="", key=NONE, label=""];
+0 -> 13  [class=active, key=0];
+0 -> 14  [class="", key=0];
+1 -> 15  [class="", key=0];
+1 -> 16  [class="", key=0];
+1 -> 17  [class=active, key=0];
+2 -> "-1"  [class="", key=NONE, label=""];
+4 -> 5  [class="", key=NONE, label=""];
+5 -> "-4"  [class="", key=NONE, label=""];
+9 -> "-5"  [class="", key=NONE, label=""];
+11 -> 12  [class=active, key=NONE, label=""];
+13 -> 1  [class=active, key=0];
+14 -> 9  [class="", key=0];
+15 -> 2  [class="", key=0];
+16 -> 4  [class="", key=0];
+17 -> 11  [class=active, key=0];
+}

@@ -1,10 +1,4 @@
-# This files contains your custom actions which can be used to run
-# custom Python code.
-#
-# See this guide on how to implement these action:
-# https://rasa.com/docs/rasa/custom-actions
-
-import requests
+import httpx
 import os
 from rasa_sdk import Action
 from rasa_sdk.events import SlotSet
@@ -15,10 +9,8 @@ class ActionFetchMarvelCharacter(Action):
     def name(self):
         return "action_fetch_marvel_character"
     
-    def run(self, dispatcher, tracker, domain):
+    async def run(self, dispatcher, tracker, domain):
         character_name = tracker.get_slot('character')
-        # TODO: Delete Print
-        print("Extracted character name:", character_name)
         if not character_name:
             dispatcher.utter_message(text="Please specify a character name.")
             return []
@@ -29,17 +21,18 @@ class ActionFetchMarvelCharacter(Action):
         hash = md5(f"{ts}{private_key}{public_key}".encode()).hexdigest()
         url = f"http://gateway.marvel.com/v1/public/characters?name={character_name}&ts={ts}&apikey={public_key}&hash={hash}"
         
-        try:
-            response = requests.get(url).json()
-            results = response['data']['results']
-            if results:
-                data = results[0]
-                description = data['description'] if data['description'] else "No description available."
-                dispatcher.utter_message(text=f"Name: {character_name}\nDescription: {description}")
-            else:
-                dispatcher.utter_message(text="No results found for the specified character. Please try another name.")
-        except Exception as e:
-            dispatcher.utter_message(text=f"Failed to fetch character details due to: {str(e)}")
-            return []
+        async with httpx.AsyncClient() as client:
+            try:
+                response = await client.get(url)
+                results = response.json()['data']['results']
+                if results:
+                    data = results[0]
+                    description = data['description'] if data['description'] else "No description available."
+                    dispatcher.utter_message(text=f"Name: {character_name}\nDescription: {description}")
+                else:
+                    dispatcher.utter_message(text="No results found for the specified character. Please try another name.")
+            except Exception as e:
+                dispatcher.utter_message(text=f"Failed to fetch character details due to: {str(e)}")
+                return []
 
         return []

@@ -34,6 +34,7 @@ stories:
     entities:
       - character: "Spider-Man"
   - action: action_fetch_marvel_character
+  - action: action_listen
   - action: utter_did_that_help
   - intent: affirm
   - action: utter_happy
