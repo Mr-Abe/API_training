@@ -21,10 +21,8 @@ rules:
   - intent: service_issues
   - action: utter_service_issues
 
-- rule: Respond to character inquiries
+- rule: Basic respond to character inquiries
   steps:
   - intent: ask_character
   - action: action_fetch_marvel_character
-  - action: action_listen
   - action: utter_did_that_help
-  - action: action_listen

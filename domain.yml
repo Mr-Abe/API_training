@@ -1,59 +1,90 @@
-version: "3.1"
+version: '3.1'
 
 slots:
   character:
     type: text
     influence_conversation: true
     mappings:
-      - type: from_entity
-        entity: character
+    - type: from_entity
+      entity: character
+
+  requested_slot:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_text
+
 
 intents:
-  - greet
-  - goodbye
   - affirm
+  - ask_character
+  - ask_hours
+  - bot_challenge
   - deny
+  - goodbye
+  - greet
   - mood_great
   - mood_unhappy
-  - bot_challenge
   - service_issues
-  - ask_hours
-  - ask_character 
 
 entities:
-  - character 
+  - character
 
 responses:
   utter_greet:
-  - text: "Hey! How are you?"
+    - text: "Hey! How are you?"
 
   utter_cheer_up:
-  - text: "Here is something to cheer you up:"
-    image: "https://i.imgur.com/nGF1K8f.jpg"
+    - text: "Here is something to cheer you up:"
+      image: "https://i.imgur.com/nGF1K8f.jpg"
 
   utter_did_that_help:
-  - text: "Did that help you?"
+    - text: "Did that help you?"
 
   utter_happy:
-  - text: "Great, carry on!"
+    - text: "Great, carry on!"
 
   utter_goodbye:
-  - text: "Bye"
+    - text: "Bye"
 
   utter_iamabot:
-  - text: "I am a bot, powered by Rasa."
+    - text: "I am a bot, powered by Rasa."
 
   utter_ask_hours:
-  - text: "Our business hours are from 9 AM to 5 PM, Monday to Friday."
+    - text: "Our business hours are from 9 AM to 5 PM, Monday to Friday."
 
   utter_service_issues:
-  - text: "I'm sorry to hear that! Could you please describe the problem in more detail?"
+    - text: "I'm sorry to hear that! Could you please describe the problem in more detail?"
 
   utter_ask_character:
-  - text: "Let me fetch some info about that character for you."
+    - text: "Let me fetch some info about that character for you."
+
+  utter_ask_which_character:
+    - text: "Which character would you like to know about?"
+
+  utter_anything_else:
+    - text: "Is there anything else I can help you with?"
+
+  utter_ask_for_clarification:
+    - text: "I didn't quite catch that. Could you clarify?"
+
+  utter_unclear_instruction:
+    - text: "I'm not sure what you mean. Could you explain a bit more?"
+  
+  utter_no_results:
+    - text: "I couldn't find any information on '{character}'. Please check the name and try again. For a list of all characters, say 'list characters.'"
+
 
 actions:
   - action_fetch_marvel_character
+  - utter_greet
+  - utter_did_that_help
+  - utter_happy
+  - utter_goodbye
+  - utter_ask_which_character
+  - utter_anything_else
+  - utter_ask_for_clarification
+  - utter_unclear_instruction
 
 session_config:
   session_expiration_time: 60

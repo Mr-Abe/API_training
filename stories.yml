@@ -1,0 +1,25 @@
+
+version: "3.1"
+stories:
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: ask_character
+  - intent: ask_character
+    entities:
+    - character: spider man
+  - action: action_fetch_marvel_character
+
+version: "3.1"
+stories:
+- story: interactive_story_2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: ask_character
+    entities:
+    - character: Wolverine
+  - slot_was_set:
+    - character: Wolverine
+  - action: action_fetch_marvel_character

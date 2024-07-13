@@ -28,16 +28,39 @@ stories:
   - intent: deny
   - action: utter_goodbye
 
-- story: marvel character inquiry
+- story: handle positive feedback after character information
   steps:
   - intent: ask_character
-    entities:
-      - character: "Spider-Man"
   - action: action_fetch_marvel_character
-  - action: action_listen
   - action: utter_did_that_help
   - intent: affirm
   - action: utter_happy
+  - intent: affirm
   - action: action_listen
+
+- story: handle negative feedback after character information
+  steps:
+  - intent: ask_character
+  - action: action_fetch_marvel_character
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_ask_for_clarification
   - intent: deny
   - action: utter_goodbye
+
+- story: handle unclear response after character information
+  steps:
+  - intent: ask_character
+  - action: action_fetch_marvel_character
+  - action: utter_did_that_help
+  - intent: nlu_fallback
+  - action: utter_unclear_instruction
+
+- story: handle character not found
+  steps:
+  - intent: ask_character
+  - action: action_fetch_marvel_character
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_no_results
+  - intent: affirm
